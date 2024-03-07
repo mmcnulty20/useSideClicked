@@ -5,7 +5,7 @@ const { useRef, useCallback } = require('react');
 // simple check for which is passed as 'Options' does not have a 'current' key
 function isRef(obj) { return !!obj && "current" in obj };
 
-export function useSideClicked(callback, refOrOptions) {
+function useSideClicked(callback, refOrOptions) {
   const [options, passedRef] = !refOrOptions
     ? [{}] : isRef(refOrOptions)
       ? [{}, refOrOptions] : [refOrOptions];
@@ -27,7 +27,17 @@ export function useSideClicked(callback, refOrOptions) {
       ? offsetY <= bounds.height / 2 : undefined;
 
     callback(arg1, arg2);
-  }, [side]);
+  }, [callback, side]);
+
+  useEffect(() => {
+    // update ref element if the passed value has changed
+    if (passedRef?.current) containerRef.current = passedRef.current;
+  }, [passedRef]);
 
   return { containerRef, handleSide };
 };
+
+// allow importing as default or destructured import
+const mod = module.exports = useSideClicked;
+mod.useSideClicked = useSideClicked;
+ 
