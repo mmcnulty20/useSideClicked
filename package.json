@@ -1,0 +1,15 @@
+{
+  "name": "use-side-clicked",
+  "version": "1.0.0",
+  "description": "Small package for a React hook that will trigger passed callbacks with which side of an element is clicked (top/bottom/left/right)",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "author": "Megan <megan.mcnulty07@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "@types/react": "18.0.0",
+    "@types/node": "20.0.0"
+  }
+}
